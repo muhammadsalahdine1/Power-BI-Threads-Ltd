@@ -93,4 +93,121 @@
 
 
 
-###  
+###  Line and area charts
+- Here, we will use a line chart to track three important financial indicators for Threads Ltd: total sales amount (or revenue), total COGS, and gross profit.
+- Then we will see how these measures move over time using area charts.
+- Add a slicer for product category.
+- Add a new line chart and track total sales amount, total cost of good sold (COGS), and total profit by month and year.
+- Change the line chart to be an area chart.
+- Change the chart back to a line chart.
+- Which month-year had the highest total profit over the four year period?
+<img src="https://github.com/muhammadsalahdine1/Power-BI-Threads-Ltd/blob/main/9.PNG" width="1000">
+
+
+ 
+### Combo charts
+- Profit margin is a measure of a business's profitability.
+- It represents the percentage of revenue that a company gets to keep as profit.
+- Threads Ltd has provided us with information related to gross profit and gross profit margin.
+- Although gross profit is required to calculate gross profit margin, an increase in revenue or profit doesn't necessarily mean an increase in the profit margin. This is an important question that the CCO has been asking in recent meetings.
+- we will start providing the CCO with some answers. Combination charts are best used in situations such as where you wish to compare a rate variable and a counting variable over time.
+- Add a new line and clustered column chart visual.
+- Using the Orders table, visualize total gross profit and the average profit margin over time.
+- Use Profit as the bars and the Profit_Margin as the line.
+- For the time on the x-axis, use the year and month of Order\_Date.
+- Aggregate Profit_Margin as the average profit margin.
+- Format the Profit_Margin column in the Orders table so that it appears as a percentage.
+- This can be done using the Column tools menu tab after double-clicking Profit_Margin in the Data pane.
+- Format the chart so that the "Title text" reads "Gross Profit and Average Profit Margin over Time".
+- Change the X axis "Axis title" to read "Month and Year".
+- Apply the correct filter to the page in order to see the financial information for products within the "Tank Tops" category.
+- In March 2019, the average profit margin for Tank Tops reached its high point. What was the percentage of the average profit margin?
+<img src="https://github.com/muhammadsalahdine1/Power-BI-Threads-Ltd/blob/main/10.PNG" width="1000">
+
+
+
+### Tornado charts
+- Now focus on a particular year in time, as well as making it as clear as possible what the profit and profit margin have shown so far - that total sales amount is never lower than sales costs across all products. Here, we will use a custom tornado chart visual to see whether the conjecture above holds.
+- Replace the current "Category" slicer so that it allows you to filter by year, and show information only for 2021. 
+- Add a new custom Tornado chart.
+- Set the tornado chart to track the total sales amount and total cost of goods sold by category.
+- Then, sort the tornado chart by category (either ascending or descending).
+- Change the "Title text" for the visual to "Revenue versus Cost".
+<img src="https://github.com/muhammadsalahdine1/Power-BI-Threads-Ltd/blob/main/11.PNG" width="1000">
+
+
+
+### Shares of the whole
+- Two common ways of demonstrating shares of a whole in Power BI are pie charts and treemaps.
+- Pie charts are best for showing simple shares of a static total. Treemaps, meanwhile, are best for showing hierarchical, categorical data.
+- Add two page-level filters, one where the year is 2021 and the other where the category is "Tees".
+- Add a new pie chart to the canvas.
+- Display the total order quantity of items, with the product size as the legend.
+- Add a filter to the visual where channel is "Local store".
+- Add a new treemap to the canvas.
+- This visualization should contain the total order quantity, channel, and product size. Ideally, we will want to use the treemap hierarchy features, so make sure to take that into consideration when adding the columns to the visual.
+- Enable Drill Mode on the treemap.
+- Select a channel like "Supermarket" to review the sizes sold by this channel and see how this affects the pie chart: the pie disappears!
+- Remove the visual-level filter on the pie chart and notice how different your experience is with the treemap versus pie chart at each level of drill-down.
+- What was the total order quantity for "M" sized products from Small chain stores?
+<img src="https://github.com/muhammadsalahdine1/Power-BI-Threads-Ltd/blob/main/12.PNG" width="1000">
+
+
+
+### Gauges and cards
+- Gauges can provide us useful information if we know the current value, target value, and maximum value of a measure.
+- In this case, we will look at gross profit margin (Profit_Margin) using a target value of 70%, which has been set by the executive team at Threads Ltd, and is something the CCO is very interested in.
+- Cards can show us one important piece of information, making the card a clean visual when looking at one or a few very important metrics.
+- In this case, we will use cards to determine how many individual orders had a profit margin greater than the company target profit margin.
+- Create two new DAX measures on the Orders table:
+- Target Profit Margin which should be equal to the fixed value 0.70
+- Maximum Profit Margin that must be equal to the fixed value 1.00.
+- For each of these new measures, set the format to percentage and to show two decimal places.
+- Add a new gauge visualization.
+- Use this gauge to measure the average profit margin versus the target and maximum measures you created.
+- Add a new DAX measures to the Orders table:
+- The measure, "Orders Above Target Profit Margin", should contain SUMX(Orders, IF(Orders[Profit_Margin] > Orders[Target Profit Margin], 1, 0))
+- this will count the number of orders that achieved a profit margin above the target profit margin.
+- Add a second new DAX measure to the Orders table:
+- The new measure, "Orders Below Target Profit Margin", should contain SUMX(Orders, IF(Orders[Profit_Margin] < Orders[Target Profit Margin], 1, 0))
+- add two new cards to display Orders Above Target Profit Margin and Orders Below Target Profit Margin.
+- Comparing orders with products in the "Tees" category for 2021 and 2020, which year had more orders above the target profit margin?
+<img src="https://github.com/muhammadsalahdine1/Power-BI-Threads-Ltd/blob/main/13.PNG" width="1000">
+<img src="https://github.com/muhammadsalahdine1/Power-BI-Threads-Ltd/blob/main/14.PNG" width="1000">
+<img src="https://github.com/muhammadsalahdine1/Power-BI-Threads-Ltd/blob/main/15.PNG" width="1000">
+<img src="https://github.com/muhammadsalahdine1/Power-BI-Threads-Ltd/blob/main/16.PNG" width="1000">
+<img src="https://github.com/muhammadsalahdine1/Power-BI-Threads-Ltd/blob/main/17.PNG" width="1000">
+
+
+
+### Key performance indicators
+- Key Performance Indicators (KPIs) help businesses track how they are doing versus relevant metrics.
+- In this case, our CCO wants to see how the company is faring compared to two important measures, one for total orders and one for total returns. Returns are not good for the company, as it means an order that was processed for a retailer was sent back due to errors or faulty goods. This costs Threads Ltd money, so the fewer returns made the better.
+- Add one page-level filter where the year is 2021.
+- Create two new DAX measures in the Orders table:
+- Total Orders which should should contain COUNT(Orders[Order_ID]).
+- This will count the total number of orders that have been processed by the company.
+- Add a KPI visualization.
+- This KPI should follow Total Orders by Order_Date.Month against the Target Orders.
+- Create two new DAX measures in the Returns table:
+- Total Returns which should should contain COUNT(Returns[Order_ID]).
+- This will count the total number of orders that have been returned by retailers after the order was carried out by the company.
+- Target Returns that must be equal to the fixed value 10.
+- Target Orders that must be equal to the fixed value 180.
+- KPI which follows the Total Returns by Order_Date.Month against the Target Number of Returns.
+- How much worse did the company do with respect to total orders versus the target?
+<img src="https://github.com/muhammadsalahdine1/Power-BI-Threads-Ltd/blob/main/18.PNG" width="1000">
+
+
+
+
+### Conditional formatting
+- Conditional formatting is a great tool for displaying color when certain conditions are met.
+- These can be cases when the situation is particularly good or particularly bad, but in either event, the change in color will draw the eye.
+- Here, we will go back to a visual created in a previous exercise and edit it so that a neutral color is used for certain products over a total sales amount threshold but show a different color for products that do not reach the £5,000 total sales amount threshold.
+- On the Product Comparison page, select bar chart and enter the conditional formatting menu to change the colors of the bars.
+- Format by Rules, with the first rule using some dark red color, such as "Theme color 8, 25% darker", or #a1343c. This color should display when Sales_Amount >= 0 and Sales_Amounth < 5000.
+- In the same window, add a second rule where Sales_Amount >= 5000 and Sales_Amounth < Max. The rule should use some grey color, such as "White 30% darker". Save the changes made.
+- What is the third product that fits the dark red conditional formatting rule?
+<img src="https://github.com/muhammadsalahdine1/Power-BI-Threads-Ltd/blob/main/19.PNG" width="1000">
+ 
